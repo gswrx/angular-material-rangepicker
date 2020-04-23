@@ -1,0 +1,31 @@
+<mat-form-field  >
+    <mat-label style="width: 100%;" *ngIf="!range">Selecteer een datum</mat-label>
+    <mat-label style="width: 100%;" *ngIf="range && range.start && range.end">{{ range.start.format('ll') + ' t/m ' + range.end.format('ll')}} </mat-label>
+    <mat-select [(value)]="selected">
+        <mat-option (click)="handleSelection('today')"  value="today">Vandaag</mat-option>
+        <mat-option (click)="handleSelection('yesterday')"  value="yesterday">Gisteren</mat-option>
+        <mat-option (click)="handleSelection('this_month')"  value="this_month">Deze maand</mat-option>
+        <mat-option (click)="handleSelection('last_month')"  value="last_month">Vorige maand</mat-option>
+        <mat-option *ngIf="!range" value="null" (click)="picker.open()">
+            Eigen selectie
+        </mat-option>
+        <mat-option style="width: 100%;" *ngIf="range && range.start && range.end" value="null" (click)="picker.open()">
+            Eigen selectie 
+        </mat-option>
+    </mat-select>
+</mat-form-field>
+
+<form [formGroup]="form">
+    <mat-form-field style="display:none;">
+        <input matInput
+                [satDatepicker]="picker"
+                formControlName="date"
+                >
+        <sat-datepicker #picker touchUi [rangeMode]="true"
+                        panelClass="range-datepicker"
+                        [calendarFooterComponent]="footer"
+                        [closeAfterSelection]="false"
+                        [selectFirstDateOnClose]="true">
+        </sat-datepicker>
+    </mat-form-field>
+</form>

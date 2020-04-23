@@ -1,0 +1,47 @@
+<!-- <gswrx-daterangepicker (dateSelected)="onDateRangeSelected($event)"></gswrx-daterangepicker> -->
+<!-- <gswrx-daterangepicker-v2></gswrx-daterangepicker-v2> -->
+<gswrx-rangepicker primaryColor="blue" secondaryColor="white" (dateSelected)="test($event)"></gswrx-rangepicker>
+
+
+<!-- <mat-form-field>
+    <mat-label>Selecteer een datum</mat-label>
+    <mat-select>
+      <mat-option value="new Date(Date.now())">
+        Vandaag
+      </mat-option>
+      <mat-option value="new Date(Date.now())">
+        Gisteren
+      </mat-option>
+      <mat-option value="new Date(Date.now())">
+        Deze maand
+      </mat-option>
+      <mat-option value="new Date(Date.now())">
+        Vorige maand
+      </mat-option>
+      <mat-option *ngIf="!range" value="new Date(Date.now())" (click)="picker6.open()">
+        Eigen selectie
+      </mat-option>
+      <mat-option *ngIf="range" value="new Date(Date.now())" (click)="picker6.open()">
+        {{ range.begin + ' - ' + range.end}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  
+  <form [formGroup]="form">
+<mat-form-field style="display:none;">
+    <input matInput
+            placeholder="Choose a date"
+            [satDatepicker]="picker6"
+            [max]="maxDate"
+            formControlName="date"
+            (dateInput)="test($event)"
+            >
+    <sat-datepicker #picker6 touchUi [rangeMode]="true"
+                    panelClass="range-datepicker"
+                    [calendarFooterComponent]="footer"
+                    [closeAfterSelection]="false"
+                    [selectFirstDateOnClose]="true">
+    </sat-datepicker>
+</mat-form-field>
+</form>
+<button (click)="test()"></button> -->

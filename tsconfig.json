@@ -1,0 +1,63 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "paths": {
+      "date-range-picker": [
+        "dist/date-range-picker"
+      ],
+      "date-range-picker/*": [
+        "dist/date-range-picker/*"
+      ],
+      "daterangepicker": [
+        "dist/daterangepicker"
+      ],
+      "daterangepicker/*": [
+        "dist/daterangepicker/*"
+      ],
+      "daterangepicker-v2": [
+        "dist/daterangepicker-v2",
+        "dist/daterangepicker-v2"
+      ],
+      "daterangepicker-v2/*": [
+        "dist/daterangepicker-v2/*",
+        "dist/daterangepicker-v2/*"
+      ],
+      "daterangepicker-v3": [
+        "dist/daterangepicker-v3"
+      ],
+      "daterangepicker-v3/*": [
+        "dist/daterangepicker-v3/*"
+      ],
+      "rangepicker": [
+        "dist/rangepicker",
+        "dist/rangepicker"
+      ],
+      "rangepicker/*": [
+        "dist/rangepicker/*",
+        "dist/rangepicker/*"
+      ]
+    }
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true,
+    "enableIvy": false
+  }
+}

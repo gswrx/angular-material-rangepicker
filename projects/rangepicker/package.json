@@ -1,0 +1,11 @@
+{
+  "name": "rangepicker",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^9.0.2",
+    "@angular/core": "^9.0.2",
+    "@angular/material-moment-adapter": "^8.2.3",
+    "moment": "^2.24.0",
+    "saturn-datepicker": "8.0.1"
+  }
+}

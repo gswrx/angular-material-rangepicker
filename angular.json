@@ -1,0 +1,249 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "environment": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/environment",
+      "sourceRoot": "projects/environment/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/environment",
+            "index": "projects/environment/src/index.html",
+            "main": "projects/environment/src/main.ts",
+            "polyfills": "projects/environment/src/polyfills.ts",
+            "tsConfig": "projects/environment/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/environment/src/favicon.ico",
+              "projects/environment/src/assets"
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
+              "projects/environment/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/environment/src/environments/environment.ts",
+                  "with": "projects/environment/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "environment:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "environment:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "environment:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/environment/src/test.ts",
+            "polyfills": "projects/environment/src/polyfills.ts",
+            "tsConfig": "projects/environment/tsconfig.spec.json",
+            "karmaConfig": "projects/environment/karma.conf.js",
+            "assets": [
+              "projects/environment/src/favicon.ico",
+              "projects/environment/src/assets"
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
+              "projects/environment/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/environment/tsconfig.app.json",
+              "projects/environment/tsconfig.spec.json",
+              "projects/environment/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/environment/e2e/protractor.conf.js",
+            "devServerTarget": "environment:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "environment:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "daterangepicker": {
+      "projectType": "library",
+      "root": "projects/daterangepicker",
+      "sourceRoot": "projects/daterangepicker/src",
+      "prefix": "gswrx",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/daterangepicker/tsconfig.lib.json",
+            "project": "projects/daterangepicker/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/daterangepicker/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/daterangepicker/src/test.ts",
+            "tsConfig": "projects/daterangepicker/tsconfig.spec.json",
+            "karmaConfig": "projects/daterangepicker/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/daterangepicker/tsconfig.lib.json",
+              "projects/daterangepicker/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "daterangepicker-v2": {
+      "projectType": "library",
+      "root": "projects/daterangepicker-v2",
+      "sourceRoot": "projects/daterangepicker-v2/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/daterangepicker-v2/tsconfig.lib.json",
+            "project": "projects/daterangepicker-v2/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/daterangepicker-v2/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/daterangepicker-v2/src/test.ts",
+            "tsConfig": "projects/daterangepicker-v2/tsconfig.spec.json",
+            "karmaConfig": "projects/daterangepicker-v2/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/daterangepicker-v2/tsconfig.lib.json",
+              "projects/daterangepicker-v2/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "rangepicker": {
+      "projectType": "library",
+      "root": "projects/rangepicker",
+      "sourceRoot": "projects/rangepicker/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/rangepicker/tsconfig.lib.json",
+            "project": "projects/rangepicker/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/rangepicker/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/rangepicker/src/test.ts",
+            "tsConfig": "projects/rangepicker/tsconfig.spec.json",
+            "karmaConfig": "projects/rangepicker/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/rangepicker/tsconfig.lib.json",
+              "projects/rangepicker/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "environment",
+  "cli": {
+    "analytics": false
+  }
+}

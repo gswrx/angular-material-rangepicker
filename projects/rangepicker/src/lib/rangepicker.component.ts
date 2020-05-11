@@ -4,8 +4,15 @@ import { Footer } from './footer.component';
 import { RangepickerService } from './rangepicker.service';
 import { SatDatepicker } from 'saturn-datepicker';
 import * as moment_ from 'moment';
+import {Observable, Subject} from 'rxjs';
 
 const moment = moment_;
+
+export interface RangeSelectorType {
+  start: moment_.Moment;
+  end: moment_.Moment;
+
+}
 
 @Component({
   selector: 'gswrx-rangepicker',
@@ -15,8 +22,11 @@ const moment = moment_;
 })
 export class RangepickerComponent implements OnInit {
   @Output() dateSelected = new EventEmitter<any>();
+  @Input() useSelector: boolean = true;
+  @Input() setDate: Observable<RangeSelectorType>;
+
   selected = 'today';
-  range;
+  range: RangeSelectorType;
   form: FormGroup;
   footer = Footer;
 
@@ -60,7 +70,12 @@ export class RangepickerComponent implements OnInit {
       }
     });
 
-    
+    // watch for external datechanges
+    this.setDate.subscribe(newDate => {
+      this.range = newDate;
+    });
+
+
   }
 
   onDateInput(date) {

@@ -4,6 +4,7 @@ import { Footer } from './footer.component';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, SatDatepickerModule } from 'saturn-datepicker'
 import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter'
 import * as _moment from 'moment';
+import {ReplaySubject, Subject} from 'rxjs';
 const moment = _moment;
 
 @Component({
@@ -30,6 +31,8 @@ export class AppComponent implements OnInit {
   range;
   footer = Footer ;
 
+  public preFill = new ReplaySubject();
+
   inlineRange;
   constructor(fb: FormBuilder) {
     this.form = fb.group({
@@ -44,6 +47,18 @@ export class AppComponent implements OnInit {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     // moment.locale('nl-NL');
+    this.preFill.next( {
+      start: moment().subtract(2, 'weeks'),
+      end: moment().subtract(1, 'weeks'),
+    });
+
+    setTimeout(()=>{
+      this.preFill.next( {
+        start: moment().subtract(3, 'weeks'),
+        end: moment().subtract(4, 'weeks'),
+      });
+    },2000)
+
   }
 
   inlineRangeChange($event) {
@@ -52,6 +67,6 @@ export class AppComponent implements OnInit {
 
   test(selected) {
     console.log(selected, 'hi');
-    
+
   }
 }

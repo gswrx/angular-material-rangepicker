@@ -1,4 +1,4 @@
-<mat-form-field  >
+<mat-form-field *ngIf="useSelector" >
     <mat-label style="width: 100%;" *ngIf="!range">Selecteer een datum</mat-label>
     <mat-label style="width: 100%;" *ngIf="range && range.start && range.end">{{ range.start.format('ll') + ' t/m ' + range.end.format('ll')}} </mat-label>
     <mat-select [(value)]="selected">
@@ -10,10 +10,15 @@
             Eigen selectie
         </mat-option>
         <mat-option style="width: 100%;" *ngIf="range && range.start && range.end" value="null" (click)="picker.open()">
-            Eigen selectie 
+            Eigen selectie
         </mat-option>
     </mat-select>
 </mat-form-field>
+
+<button mat-button color="primary" id="button-rangepicker" *ngIf="!useSelector" (click)="picker.open()">
+  <span *ngIf="!range">Selecteer een datum</span>
+  <span *ngIf="range && range.start && range.end">{{ range.start.format('ll') + ' t/m ' + range.end.format('ll')}} </span>
+</button>
 
 <form [formGroup]="form">
     <mat-form-field style="display:none;">

@@ -9,7 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatSelectModule } from '@angular/material';
 import { SatDatepickerModule } from 'saturn-datepicker';
 import { SatNativeDateModule } from 'saturn-datepicker';
-import { RangepickerModule } from 'rangepicker';
+import { RangepickerModule } from '../../../rangepicker/src/lib/rangepicker.module';
 
 
 @NgModule({

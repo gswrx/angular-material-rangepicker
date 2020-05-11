@@ -32,6 +32,7 @@ export class AppComponent implements OnInit {
   footer = Footer ;
 
   public preFill = new ReplaySubject();
+  public preFillContent = new ReplaySubject();
 
   inlineRange;
   constructor(fb: FormBuilder) {
@@ -58,6 +59,17 @@ export class AppComponent implements OnInit {
         end: moment().subtract(4, 'weeks'),
       });
     },2000)
+
+    setTimeout(()=>{
+      this.preFillContent.next("hoi");
+    },7000)
+
+    setTimeout(()=>{
+      this.preFill.next( {
+        start: moment().subtract(3, 'weeks'),
+        end: moment().subtract(1, 'days'),
+      });
+    },6000)
 
   }
 

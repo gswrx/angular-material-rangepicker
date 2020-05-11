@@ -1,6 +1,7 @@
 <mat-form-field *ngIf="useSelector" >
-    <mat-label style="width: 100%;" *ngIf="!range">Selecteer een datum</mat-label>
-    <mat-label style="width: 100%;" *ngIf="range && range.start && range.end">{{ range.start.format('ll') + ' t/m ' + range.end.format('ll')}} </mat-label>
+    <mat-label style="width: 100%;" *ngIf="hideRangeContent">{{ customContent}}</mat-label>
+    <mat-label style="width: 100%;" *ngIf="!range && !hideRangeContent">Selecteer een datum</mat-label>
+    <mat-label style="width: 100%;" *ngIf="range && range.start && range.end && !hideRangeContent">{{ range.start.format('ll') + ' t/m ' + range.end.format('ll')}} </mat-label>
     <mat-select [(value)]="selected">
         <mat-option (click)="handleSelection('today')"  value="today">Vandaag</mat-option>
         <mat-option (click)="handleSelection('yesterday')"  value="yesterday">Gisteren</mat-option>
@@ -16,8 +17,9 @@
 </mat-form-field>
 
 <button mat-button color="primary" id="button-rangepicker" *ngIf="!useSelector" (click)="picker.open()">
-  <span *ngIf="!range">Selecteer een datum</span>
-  <span *ngIf="range && range.start && range.end">{{ range.start.format('ll') + ' t/m ' + range.end.format('ll')}} </span>
+  <span style="width: 100%;" *ngIf="hideRangeContent">{{ customContent}}</span>
+  <span style="width: 100%;" *ngIf="!range && !hideRangeContent">Selecteer een datum</span>
+  <span style="width: 100%;" *ngIf="range && range.start && range.end && !hideRangeContent">{{ range.start.format('ll') + ' t/m ' + range.end.format('ll')}} </span>
 </button>
 
 <form [formGroup]="form">

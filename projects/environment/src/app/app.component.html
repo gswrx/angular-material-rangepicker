@@ -4,8 +4,9 @@
   primaryColor="blue"
   secondaryColor="white"
   (dateSelected)="test($event)"
-  [useSelector]="true"
+  [useSelector]="false"
   [setDate]="preFill.asObservable()"
+  [setContent]="preFillContent.asObservable()"
 ></gswrx-rangepicker>
 
 

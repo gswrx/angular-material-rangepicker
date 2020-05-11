@@ -1,6 +1,12 @@
 <!-- <gswrx-daterangepicker (dateSelected)="onDateRangeSelected($event)"></gswrx-daterangepicker> -->
 <!-- <gswrx-daterangepicker-v2></gswrx-daterangepicker-v2> -->
-<gswrx-rangepicker primaryColor="blue" secondaryColor="white" (dateSelected)="test($event)" [useSelector]="false" [setDate]="preFill.asObservable()"></gswrx-rangepicker>
+<gswrx-rangepicker
+  primaryColor="blue"
+  secondaryColor="white"
+  (dateSelected)="test($event)"
+  [useSelector]="true"
+  [setDate]="preFill.asObservable()"
+></gswrx-rangepicker>
 
 
 <!-- <mat-form-field>

@@ -71,9 +71,11 @@ export class RangepickerComponent implements OnInit {
     });
 
     // watch for external datechanges
-    this.setDate.subscribe(newDate => {
-      this.range = newDate;
-    });
+    if(this.setDate) {
+      this.setDate.subscribe(newDate => {
+        this.range = newDate;
+      });
+    }
 
 
   }

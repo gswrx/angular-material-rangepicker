@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   title = "environment";
   maxDate = new Date(Date.now());
   serializedDate = new FormControl((new Date()).toISOString());
-
+  selected;
 
   onDateRangeSelected(event) {
     console.log(event);
@@ -33,6 +33,7 @@ export class AppComponent implements OnInit {
 
   public preFill = new ReplaySubject();
   public preFillContent = new ReplaySubject();
+  public openSubject = new Subject();
 
   inlineRange;
   constructor(fb: FormBuilder) {
@@ -61,8 +62,11 @@ export class AppComponent implements OnInit {
     },2000)
 
     setTimeout(()=>{
-      this.preFillContent.next("hoi");
-    },7000)
+      this.preFill.next( {
+        start: moment().subtract(1, 'weeks'),
+        end: moment().subtract(1, 'days'),
+      });
+    },4000)
 
     setTimeout(()=>{
       this.preFill.next( {
@@ -77,8 +81,12 @@ export class AppComponent implements OnInit {
     this.inlineRange = $event;
   }
 
+  externalOpen(){
+    this.openSubject.next(true);
+  }
+
   test(selected) {
     console.log(selected, 'hi');
-
+    this.selected = selected;
   }
 }

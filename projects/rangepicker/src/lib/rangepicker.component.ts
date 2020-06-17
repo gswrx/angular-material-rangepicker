@@ -1,10 +1,9 @@
-import { Component, Output, EventEmitter, ViewEncapsulation, OnInit, Input, ElementRef, OnChanges, SimpleChange, SimpleChanges, ViewChild } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
-import { Footer } from './footer.component';
-import { RangepickerService } from './rangepicker.service';
-import { SatDatepicker } from 'saturn-datepicker';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation} from '@angular/core';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {Footer} from './footer.component';
+import {RangepickerService} from './rangepicker.service';
 import * as moment_ from 'moment';
-import {Observable, Subject} from 'rxjs';
+import {Observable} from 'rxjs';
 
 const moment = moment_;
 
@@ -21,17 +20,13 @@ export interface RangeSelectorType {
   encapsulation: ViewEncapsulation.None
 })
 export class RangepickerComponent implements OnInit {
-  @Output() dateSelected = new EventEmitter<any>();
-  @Input() useSelector: boolean = true;
-  @Input() setDate: Observable<RangeSelectorType>;
-  @Input() setContent: Observable<string>;
+
+  @ViewChild('picker') picker;
 
   selected = 'today';
   range: RangeSelectorType;
   form: FormGroup;
   footer = Footer;
-  public customContent: string = "Selecteer een datum"
-  public hideRangeContent = false;
 
 
   constructor(fb: FormBuilder, private rangepickerService: RangepickerService) {
@@ -40,6 +35,13 @@ export class RangepickerComponent implements OnInit {
     });
   }
 
+
+  @Output() dateSelected = new EventEmitter<any>();
+
+  @Input() noLayout: boolean = false;
+
+  @Input() open: Observable<boolean>;
+  @Input() setDate: Observable<RangeSelectorType>;
 
   @Input() set primaryColor(value: string) {
     document.documentElement.style.setProperty('--primary-lib', value);
@@ -61,6 +63,7 @@ export class RangepickerComponent implements OnInit {
       const begin = this.form.value.date.begin;
       const end = this.form.value.date.end;
 
+
       if (save) {
 
 
@@ -74,24 +77,28 @@ export class RangepickerComponent implements OnInit {
 
     this.dateSelected.subscribe(newDate => {
       this.range = newDate;
-      this.hideRangeContent = false;
     });
 
 
-    // watch for external content-changes
-    if(this.setContent){
-      this.setContent.subscribe(newContent => {
-        this.customContent = newContent;
-        this.hideRangeContent = true;
-      });
-    }
 
     // watch for external date-changes
     if(this.setDate) {
       this.setDate.subscribe(newDate => {
+        this.form.setValue({date:{
+          begin: newDate.start.toDate(),
+          end: newDate.end.toDate(),
+        }});
         this.range = newDate; // we can't use dateSelect.emit to set the range, since that may cause a loop if the parent component has bad code
-        this.hideRangeContent = false;
       });
+
+    }
+
+    if (this.open) {
+      this.open.subscribe(doOpen => {
+        if (doOpen) {
+          this.picker.open();
+        }
+      })
     }
 
 

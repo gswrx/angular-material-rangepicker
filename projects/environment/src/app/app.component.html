@@ -4,10 +4,18 @@
   primaryColor="blue"
   secondaryColor="white"
   (dateSelected)="test($event)"
-  [useSelector]="false"
   [setDate]="preFill.asObservable()"
-  [setContent]="preFillContent.asObservable()"
+  [open]="openSubject.asObservable()"
+  [noLayout]="true"
 ></gswrx-rangepicker>
+
+<button (click)="externalOpen()">open</button>
+
+<div *ngIf="selected">
+
+  {{ selected.start }}
+  {{ selected.end }}
+</div>
 
 
 <!-- <mat-form-field>
